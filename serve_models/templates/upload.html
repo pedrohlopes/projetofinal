@@ -80,7 +80,7 @@
       <form id="myform" class="form" action = "/separator/upload/uploader/" method = "POST" 
          enctype = "multipart/form-data">
 		<div class="form-group">
-			<select class="custom-select" name="select_model" required>
+			<select id='select_model' class="custom-select" name="select_model" required>
 				<option value="">Select model</option>
 				<option value="u_net_5_5">U-net, kernel size = (5,5) </option>
 				<option value="u_net_3_7">Double U-net, kernel sizes = (3,7) , (7,3)</option>
@@ -105,17 +105,23 @@
 	  $('.fileinput-upload').click(function() {
 	    console.log(this);
 	    var btn = $(this);
-	    $.LoadingOverlay("show", {text:"Separating your song. This may take a while..."});
-		setTimeout(function () {
-			  $.LoadingOverlay("text", "Just a little bit more...");
-		  }, 15000);
-	    $(this).html(
-				`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading... Please Wait`
-	    );
-	    //setTimeout(function(){
-		//    btn.prop("disabled", true);
-		 //   $.LoadingOverlay("Separating your song...");
-	    //}, 500);
+		var e = document.getElementById('select_model');
+		var model = e.value;
+		if (model === ""){
+
+		}else{
+			$.LoadingOverlay("show", {text:"Separating your song. This may take a while..."});
+			setTimeout(function () {
+				$.LoadingOverlay("text", "Just a little bit more...");
+			}, 25000);
+			$(this).html(
+					`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading... Please Wait`
+			);
+			//setTimeout(function(){
+			//    btn.prop("disabled", true);
+			//   $.LoadingOverlay("Separating your song...");
+			//}, 500);
+		};
 	   });
 	  });
 	</script>
